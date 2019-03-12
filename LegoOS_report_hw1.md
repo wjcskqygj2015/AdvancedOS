@@ -54,8 +54,16 @@ LegoOS意图打造一个分布式的操作系统，做到以硬件资源级别�
 
 另外，怎么说呢，就感觉有一种把虚拟机做到了OS级别的味道在里面，加以实现了一些常用的大数据平台的管理调度方式，OS的最大的contribution应该还是他实现了这个东西吧．
 
+## What I would do if i wrote this paper
+
+因为之前其实在本科阶段也有想过实现一个支持分布式的操作系统，甚至也和操作系统课程到时以及其他导师讨论商量过，当时是想做在虚拟化那一个层面的，就是利用虚拟化的手段给上层操作系统提供一个完整的内存接口等等，并利用Page Fault来进行获取外面的页面，然后实现透明化，然而不得不说Page Fault的开销在当时看来其实还是很大的，当时也考虑过RDMA的事情，也考虑利用本身内存页面的换入换出算法然后得以实现Swap的功能，从而实现大页面的网络功能。然而当时其实还更多的是考虑需要实现其一致性问题，就是如何保证在不同机器的多线程对于同一个逻辑内存地址的访问，并且甚至考虑能都将利用更底层的比如放宽一致性模型来更进一步的提升效率。当然最后其实感觉可行性和创新性其实并没有想象的那么高，另外其实虚拟化没那么必要，但是直接修改内核也有点困难
+
 ## Survey Paper Lists
 
 [1]  Mellanox. ConnectX-6 Single/Dual-Port Adapter sup porting 200Gb/s with VPI.
 
 [2]  Mellanox. Rdma aware networks programming user manual.
+
+[3]  K. Elphinstone and G. Heiser. From l3 to sel4 what have we learnt in 20 years of l4 microkernels?
+
+[4] D. R. Engler, M. F. Kaashoek, and J. O’Toole, Jr. Exokernel: An operating system architecture for application-level resource management.
