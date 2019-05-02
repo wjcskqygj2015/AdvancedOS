@@ -99,9 +99,11 @@
 
    ​		多核的情况对于一致性的处理也是非常让人困惑的，我之前有所了解过Coherence和Consistency的差别以及为什么需要关注，然而目前在遇到具体的情况的时候，依然再次感到了迷茫，我觉得也应该需要更加具体的结合实际情况进行掌握了解。而且以后编码也可以更加高效，毕竟越轻松的约束条件相对性能也会更好一些，甚至某种程度上能够减少锁总线和Cache Invalidaty的情况，从而提升整体指令的Throughput.
 
-3. 目前对于rocksdb本身（与OS无关的）可扩展性主要是他的内存存储结构，主要在这篇文章Scaling Concurrent Log-Structured Data Stores提出了一个具有高可扩展性的还能够对磁盘I/O有比较好的读写Throughput。当然Rocksdb也有和ScaleFS类似的想法，就是延迟更新，并且在内存中也有一块用于Concurrent的内存记录（Concurrent Skip List），然后等到Sync采取刷到他的结构内容是SST。其中也类似于Oplog，则使用了上面的Log-Structured的结构进行记录和Merge。当然上面的这个结构和ScaleFS不一样的地方，在于Concurrent Log-Structured Data Stores还需要维护各种时间点的备份。
+3. 目前对于rocksdb本身（与OS无关的）可扩展性主要是他的内存存储结构，主要在这篇文章Scaling [Concurrent Log-Structured Data Stores](http://webee.technion.ac.il/~idish/ftp/clsm.pdf)提出了一个具有高可扩展性的还能够对磁盘I/O有比较好的读写Throughput。当然Rocksdb也有和[ScaleFS](https://pdos.lcs.mit.edu/papers/scalefs.pdf)类似的想法，就是延迟更新，并且在内存中也有一块用于Concurrent的内存记录（Concurrent Skip List），然后等到Sync采取刷到他的结构内容是SST。其中也类似于Oplog，则使用了上面的Log-Structured的结构进行记录和Merge。当然上面的这个结构和ScaleFS不一样的地方，在于Concurrent Log-Structured Data Stores还需要维护各种时间点的备份。
 
-   然而这里，个人又有一点看法，因为感觉类似于Commutor，不知道这里是否可以也对一些命令进行一些Concurrent的分析，并给出各种应该并行的情况，然后找出里面的潜在的Bottleneck，并给予优化。
+   然而这里，个人又有一点看法，因为感觉类似于[Commutor](http://sigops.org/s/conferences/sosp/2013/papers/p1-clements.pdf)，不知道这里是否可以也对一些命令进行一些Concurrent的分析，并给出各种应该并行的情况，然后找出里面的潜在的Bottleneck，并给予优化。
+
+   另外，2017年似乎也有人进一步提出了更新的专门针对多核的结构[Concurrent Log-Structured Memoryfor Many-Core Key-Value Stores](http://www.vldb.org/pvldb/vol11/p458-merritt.pdf)也可以考虑和Rocksdb进行结合尝试一下性能提升。
 
 ## 未来的计划和想法
 
@@ -109,5 +111,6 @@
 2. 计划寻找一些常用的baseline，然后根据上面提出来的一些idea来进行一些代码上的修改并进行测试
 3. 继续研究代码，可以利用Commutor的思想，先找出里面理论上的并行情况，然后在制定测试用例，进行瓶颈的寸照
 
+## 参考文献
 
-
+因为直接使用Markdown自带的链接形式，[]() 这样的形式就直接吧需要的论文附在对应内容的后面，这样可以使用Github浏览的时候直接点击即可，更加的方便直接。
