@@ -54,16 +54,11 @@
 
 ## Survey Paper Lists
 
-[1] A. Chou, J. Yang, B. Chelf, S. Hallem, and D. Engler. An empirical
-study of operating systems errors. In Proceedings of the 18th ACM
-Symposium on Operating System Principles, pages 73–88, Banff,
-Canada, Oct. 2001.
+[1] A. Chou, J. Yang, B. Chelf, S. Hallem, and D. Engler. An empirical study of operating systems errors. In Proceedings of the 18th ACM Symposium on Operating System Principles, pages 73–88, Banff, Canada, Oct. 2001.
 
-[2] Comedi: Linux Control and Mesurement Device Interface. http:
-//www.comedi.org/.
+[2] Comedi: Linux Control and Mesurement Device Interface. http://www.comedi.org/.
 
-[3] Static source code analysis, static analysis, software quality tools by
-Coverity Inc. http://www.coverity.com/, 2008.
+[3] Static source code analysis, static analysis, software quality tools by Coverity Inc. http://www.coverity.com/, 2008.
 
 
 
